@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rezwan Tarin &mdash; Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0f1b2d;
+      --blue:    #4a6fa5;
+      --blue-lt: #e8edf5;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --border:  #d1d5db;
+      --bg:      #f0f4f8;
+      --white:   #ffffff;
+      --green:   #166534;
+      --font:    'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Header ─────────────────────────────────────────────────────────── */
+    .r-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 2.5rem 3rem;
+    }
+    .r-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .r-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.25);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .r-header-text { flex: 1; }
+    .r-name {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .r-title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      opacity: 0.75;
+      margin-top: 0.3rem;
+    }
+    .r-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      margin-top: 0.9rem;
+    }
+    .r-contact a {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .r-contact a:hover { color: #fff; text-decoration: none; }
+
+    /* ── Body layout ─────────────────────────────────────────────────────── */
+    .r-body {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 290px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ── Section ─────────────────────────────────────────────────────────── */
+    .section { margin-bottom: 2rem; }
+    .section:last-child { margin-bottom: 0; }
+    .section-title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      border-bottom: 2px solid var(--blue-lt);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* ── Cards ───────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    /* ── Summary ─────────────────────────────────────────────────────────── */
+    .summary p {
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.7;
+    }
+    .summary p:last-child { margin-bottom: 0; }
+
+    /* ── Stats ───────────────────────────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      line-height: 1.3;
+    }
+
+    /* ── Timeline ────────────────────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 1.4rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--blue-lt);
+    }
+    .tl-item { position: relative; margin-bottom: 1.5rem; }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -1.4rem;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .tl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .tl-role {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .tl-company {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .tl-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .tl-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+    }
+    .tl-location {
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.3rem;
+    }
+    .tl-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tl-body ul li {
+      font-size: 0.83rem;
+      color: var(--text);
+      padding: 0.2rem 0 0.2rem 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .tl-body ul li::before {
+      content: '&rsaquo;';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    /* ── Projects ────────────────────────────────────────────────────────── */
+    .projects-list { display: flex; flex-direction: column; gap: 1rem; }
+    .proj-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+      border-left: 3px solid var(--blue);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .proj-top {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .proj-title {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--navy);
+    }
+    .proj-cat {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      background: var(--blue-lt);
+      padding: 0.1rem 0.45rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .proj-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.55rem;
+    }
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .proj-tag {
+      font-size: 0.69rem;
+      background: #f0f4f8;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.12rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ── Sidebar: Skills ─────────────────────────────────────────────────── */
+    .skill-group { margin-bottom: 1.1rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+    .skill-tag {
+      font-size: 0.69rem;
+      background: var(--blue-lt);
+      color: var(--blue);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* ── Sidebar: Education / Certs ──────────────────────────────────────── */
+    .cred-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .cred-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .cred-badge {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--white);
+      background: var(--blue);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+    .cred-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .cred-org {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+    .cred-date {
+      font-size: 0.7rem;
+      color: var(--blue);
+      margin-top: 0.1rem;
+    }
+
+    /* ── Values ──────────────────────────────────────────────────────────── */
+    .value-item {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .value-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .value-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .value-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Print ───────────────────────────────────────────────────────────── */
+    @page { size: letter portrait; margin: 0.45in; }
+
+    @media print {
+      body { background: white; font-size: 11px; }
+      .r-header { padding: 1.1rem 1.5rem; }
+      .r-header-inner { gap: 1.2rem; }
+      .r-photo { width: 70px; height: 70px; }
+      .r-name { font-size: 1.5rem; }
+      .r-title { font-size: 0.82rem; margin-top: 0.15rem; }
+      .r-contact { margin-top: 0.5rem; gap: 0.3rem 1rem; }
+      .r-contact a { font-size: 0.72rem; }
+
+      .r-body { margin: 0.75rem auto; padding: 0 0.5rem; gap: 1.25rem; }
+      .section { margin-bottom: 1.1rem; }
+      .section-title { margin-bottom: 0.6rem; padding-bottom: 0.2rem; font-size: 0.6rem; }
+
+      .card { padding: 0.8rem 1rem; box-shadow: none; border: 1px solid #ddd; border-radius: 5px; }
+      .stat-card { padding: 0.6rem; box-shadow: none; border: 1px solid #ddd; border-radius: 5px; }
+      .stats-row { gap: 0.4rem; margin-bottom: 1.1rem; }
+      .stat-num { font-size: 1.2rem; }
+      .stat-lbl { font-size: 0.62rem; }
+
+      .summary p { font-size: 0.8rem; margin-bottom: 0.45rem; }
+
+      .tl-role { font-size: 0.82rem; }
+      .tl-company { font-size: 0.72rem; }
+      .tl-date { font-size: 0.65rem; }
+      .tl-body ul li { font-size: 0.75rem; padding: 0.12rem 0 0.12rem 0.9rem; }
+      .tl-item { margin-bottom: 1rem; }
+
+      .proj-card { padding: 0.7rem 0.9rem; }
+      .proj-title { font-size: 0.8rem; }
+      .proj-desc { font-size: 0.73rem; margin-bottom: 0.35rem; }
+      .proj-tag { font-size: 0.62rem; }
+      .projects-list { gap: 0.6rem; }
+
+      .skill-group { margin-bottom: 0.7rem; }
+      .skill-group-title { font-size: 0.68rem; }
+      .skill-tag { font-size: 0.62rem; }
+
+      .cred-title { font-size: 0.75rem; }
+      .cred-org, .cred-date { font-size: 0.65rem; }
+      .cred-item { padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+
+      .value-title { font-size: 0.75rem; }
+      .value-desc { font-size: 0.7rem; }
+      .value-item { padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
+    }
+
+    @media (max-width: 680px) {
+      .r-header { padding: 1.5rem; }
+      .r-header-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .r-body { grid-template-columns: 1fr; padding: 0 1rem 2rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────────────────── -->
+<header class="r-header">
+  <div class="r-header-inner">
+    <picture>
+      <source srcset="https://rezwan-tarin.github.io/Profile-sq.webp" type="image/webp" />
+      <img src="https://rezwan-tarin.github.io/Profile-sq.png" alt="Rezwan Tarin" class="r-photo" width="96" height="96" />
+    </picture>
+    <div class="r-header-text">
+      <div class="r-name">Rezwan Tarin</div>
+      <div class="r-title">Information Security Specialist &mdash; Founder, The Safe North</div>
+      <div class="r-contact">
+        <a href="mailto:Rezwantarin2021@gmail.com">&#9993; Rezwantarin2021@gmail.com</a>
+        <a href="https://www.linkedin.com/in/rezwantarin" target="_blank" rel="noopener noreferrer">&#128279; linkedin.com/in/rezwantarin</a>
+        <a href="https://rezwan-tarin.github.io" target="_blank" rel="noopener noreferrer">&#127760; rezwan-tarin.github.io</a>
+        <span style="color:rgba(255,255,255,0.65);font-size:0.82rem;">&#128205; Toronto, ON</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Body ────────────────────────────────────────────────────────────────── -->
+<div class="r-body">
+
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-lbl">Years in Enterprise Security</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-lbl">Web Apps Secured &amp; Migrated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">98%</div>
+        <div class="stat-lbl">Phishing Awareness Achieved</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">Industry Certifications</div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="section">
+      <div class="section-title">Summary</div>
+      <div class="card summary">
+        <p>Information Security Specialist with 3+ years of enterprise security experience across security operations, threat investigation, identity management, and cloud security. I got my start in finance at TD Bank, where three years of managing sensitive client information under regulatory pressure taught me that real security is about process and trust, not just technology.</p>
+        <p>That foundation led me to cybersecurity. I completed a Computer Programming Analysis diploma at George Brown College, then moved into an Information Security Specialist role at Teranet Inc., where I have spent the past 3+ years doing hands-on enterprise work: rolling out Zero Trust architecture, migrating WAF infrastructure for 20+ applications, replacing a full SIEM and EDR stack, developing AI governance standards, and lifting phishing awareness from 88% to 98% across the organization.</p>
+        <p>I founded The Safe North to bring enterprise-grade security thinking directly to the growing businesses that need it most &mdash; delivered by someone who has actually done the work.</p>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="card">
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Information Security Specialist</div>
+                <div class="tl-company">Teranet Inc. &mdash; Large Enterprise, Financial Sector</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">3+ Years</span>
+                <span class="tl-location">Toronto, ON</span>
+              </div>
+            </div>
+            <div class="tl-body">
+              <ul>
+                <li>Investigated and responded to security incidents using enterprise SIEM and EDR platforms, analyzing threats and driving remediation across teams.</li>
+                <li>Led Zero Trust implementation, strengthening identity-based authentication and DLP enforcement across enterprise systems.</li>
+                <li>Developed AI governance standards aligned with security, privacy, and regulatory requirements.</li>
+                <li>Conducted vulnerability assessments, supported penetration testing, and collaborated with IT on remediation prioritization.</li>
+                <li>Ran security awareness programs, lifting phishing simulation scores from 88% to 98% across the organization.</li>
+                <li>Automated security workflows and built executive reporting dashboards to communicate risk posture to leadership.</li>
+                <li>Led cloud security initiatives including migration of WAF infrastructure covering 20+ applications with zero downtime.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-header">
+              <div>
+                <div class="tl-role">Financial Services &mdash; Risk &amp; Compliance</div>
+                <div class="tl-company">TD Bank &mdash; Financial Services</div>
+              </div>
+              <div class="tl-meta">
+                <span class="tl-date">3 Years</span>
+                <span class="tl-location">Toronto, ON</span>
+              </div>
+            </div>
+            <div class="tl-body">
+              <ul>
+                <li>Managed sensitive client information under strict regulatory and compliance standards in a high-volume banking environment.</li>
+                <li>Identified fraud risks and escalated suspicious activity in line with internal risk procedures.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-title">Key Enterprise Projects</div>
+      <div class="projects-list">
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">Backup &amp; Disaster Recovery Assessment</div>
+            <span class="proj-cat">Business Continuity</span>
+          </div>
+          <p class="proj-desc">Assessed backup and DR setup across on-premises and cloud environments. Reviewed RTO/RPO targets, tested recovery procedures, identified gaps, and delivered a DR readiness report for leadership with a prioritized action list.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">DR Assessment</span>
+            <span class="proj-tag">Business Continuity</span>
+            <span class="proj-tag">RTO / RPO</span>
+            <span class="proj-tag">Azure Backup</span>
+            <span class="proj-tag">Risk Reporting</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">WAF Migration &mdash; F5 Silverline to Cloud</div>
+            <span class="proj-cat">Cloud Security</span>
+          </div>
+          <p class="proj-desc">Migrated the Web Application Firewall from on-premises F5 Silverline to a cloud solution across 20+ web applications. Built new WAF rule sets, coordinated with application owners, and completed the migration with zero downtime or gap in protection.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">F5 Silverline</span>
+            <span class="proj-tag">Cloud WAF</span>
+            <span class="proj-tag">Azure</span>
+            <span class="proj-tag">Web App Security</span>
+            <span class="proj-tag">Zero Downtime</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">RSA Authentication Migration &amp; Upgrade</div>
+            <span class="proj-cat">Identity &amp; Access</span>
+          </div>
+          <p class="proj-desc">Coordinated the migration and upgrade of RSA Authentication Manager for MFA and remote access. Reassigned tokens, updated VPN and system integrations, and maintained uninterrupted authentication for all users throughout the change.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">RSA SecurID</span>
+            <span class="proj-tag">MFA</span>
+            <span class="proj-tag">IAM</span>
+            <span class="proj-tag">VPN Integration</span>
+            <span class="proj-tag">PAM</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">Zero Trust Implementation</div>
+            <span class="proj-cat">Security Architecture</span>
+          </div>
+          <p class="proj-desc">Rolled out Zero Trust architecture across the organization using identity and device controls &mdash; conditional access in Azure AD, device compliance enforcement, and phased removal of implicit network trust. Deployed in phases to minimize disruption.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Zero Trust</span>
+            <span class="proj-tag">Azure AD</span>
+            <span class="proj-tag">Conditional Access</span>
+            <span class="proj-tag">DLP</span>
+            <span class="proj-tag">Identity Security</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">EDR Replacement &mdash; Carbon Black &rarr; Microsoft Defender</div>
+            <span class="proj-cat">Endpoint Security</span>
+          </div>
+          <p class="proj-desc">Managed the replacement of Carbon Black with Microsoft Defender for Endpoint across all endpoints. Planned phased rollout, removed legacy agents, and integrated Defender alerts into the SIEM for unified visibility and simplified day-to-day management.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Carbon Black</span>
+            <span class="proj-tag">Microsoft Defender</span>
+            <span class="proj-tag">EDR</span>
+            <span class="proj-tag">Endpoint Security</span>
+            <span class="proj-tag">SIEM Integration</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">SIEM &amp; VM Replacement &mdash; Rapid7 &rarr; Jolear, Qualys &amp; Elastic</div>
+            <span class="proj-cat">SIEM &amp; Vuln. Management</span>
+          </div>
+          <p class="proj-desc">Replaced Rapid7 InsightIDR/InsightVM with a modern stack: Jolear for SIEM and detection, Qualys for vulnerability management, and Elastic Agent for log collection. Built new detection rules, dashboards, and migrated existing workflows.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Rapid7</span>
+            <span class="proj-tag">Jolear SIEM</span>
+            <span class="proj-tag">Qualys</span>
+            <span class="proj-tag">Elastic Agent</span>
+            <span class="proj-tag">Vulnerability Management</span>
+            <span class="proj-tag">Log Management</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN (sidebar) -->
+  <div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-title">Skills &amp; Tools</div>
+      <div class="card">
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#128269; Security Operations</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Incident Response</span>
+            <span class="skill-tag">Threat Investigation</span>
+            <span class="skill-tag">Rapid7 IDR / IVM</span>
+            <span class="skill-tag">Carbon Black EDR</span>
+            <span class="skill-tag">Extrahop360 NDR</span>
+            <span class="skill-tag">IPS / IDS</span>
+            <span class="skill-tag">Log Correlation</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#9729; Cloud &amp; Network Security</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Microsoft Azure</span>
+            <span class="skill-tag">F5 Silverline WAF</span>
+            <span class="skill-tag">Zero Trust</span>
+            <span class="skill-tag">TCP / IP</span>
+            <span class="skill-tag">SSL / TLS</span>
+            <span class="skill-tag">IPSEC</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#128274; Identity &amp; Access</div>
+          <div class="skill-tags">
+            <span class="skill-tag">CyberArk PAM</span>
+            <span class="skill-tag">RSA Authentication</span>
+            <span class="skill-tag">DLP Enforcement</span>
+            <span class="skill-tag">Netskope CASB</span>
+            <span class="skill-tag">Digital Guardian</span>
+            <span class="skill-tag">Microsoft Defender</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#128202; Analytics &amp; Automation</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Power Automate</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PowerShell</span>
+            <span class="skill-tag">ServiceNow</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Confluence</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#128203; Governance &amp; Compliance</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Vulnerability Management</span>
+            <span class="skill-tag">Penetration Testing</span>
+            <span class="skill-tag">Security Audits</span>
+            <span class="skill-tag">AI Governance</span>
+            <span class="skill-tag">Business Continuity</span>
+            <span class="skill-tag">Disaster Recovery</span>
+            <span class="skill-tag">Security Policies</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title">&#128187; Platforms &amp; PKI</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Windows Enterprise</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Entrust</span>
+            <span class="skill-tag">Sectigo</span>
+            <span class="skill-tag">Executive Reporting</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Education & Certifications -->
+    <div class="section">
+      <div class="section-title">Education &amp; Certifications</div>
+      <div class="card">
+
+        <div class="cred-item">
+          <span class="cred-badge">Certification</span>
+          <div class="cred-title">ISC2 Certified in Cybersecurity (CC)</div>
+          <div class="cred-org">ISC2</div>
+          <div class="cred-date">December 2025</div>
+        </div>
+
+        <div class="cred-item">
+          <span class="cred-badge">Certification</span>
+          <div class="cred-title">CompTIA CySA+</div>
+          <div class="cred-org">CompTIA</div>
+          <div class="cred-date">July 2022</div>
+        </div>
+
+        <div class="cred-item">
+          <span class="cred-badge">Diploma</span>
+          <div class="cred-title">Computer Programming Analyst</div>
+          <div class="cred-org">George Brown College &mdash; Toronto, ON</div>
+          <div class="cred-date">May 2021</div>
+        </div>
+
+        <div class="cred-item">
+          <span class="cred-badge">High School</span>
+          <div class="cred-title">Ontario Secondary School Diploma</div>
+          <div class="cred-org">Central Technical High School &mdash; Toronto, ON</div>
+          <div class="cred-date">June 2018</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Approach -->
+    <div class="section">
+      <div class="section-title">Approach</div>
+      <div class="card">
+
+        <div class="value-item">
+          <div class="value-title">&#128196; Clarity Over Jargon</div>
+          <div class="value-desc">Every finding and report is written so non-security stakeholders can act on it. Security advice only a specialist can understand is noise.</div>
+        </div>
+
+        <div class="value-item">
+          <div class="value-title">&#9878; Honest Risk, Not Fear</div>
+          <div class="value-desc">I communicate actual risk &mdash; not what sounds impressive. Some threats matter a lot; others don&rsquo;t. I help you tell the difference.</div>
+        </div>
+
+        <div class="value-item">
+          <div class="value-title">&#127919; Enterprise Depth, Right-Sized</div>
+          <div class="value-desc">I bring large-enterprise security thinking to every engagement &mdash; without the overhead, red tape, or junior handoff.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

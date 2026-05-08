@@ -379,12 +379,41 @@
       line-height: 1.5;
     }
 
+    /* ── PDF Button ─────────────────────────────────────────────────────── */
+    .pdf-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(15,27,45,0.35);
+      transition: background 0.2s, transform 0.18s, box-shadow 0.18s;
+    }
+    .pdf-btn:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(15,27,45,0.4);
+    }
+    .pdf-btn:active { transform: translateY(0); }
+    .pdf-btn svg { flex-shrink: 0; }
+
     /* ── Print ───────────────────────────────────────────────────────────── */
     @page { size: letter portrait; margin: 0.45in; }
 
     @media print {
       body { background: white; font-size: 11px; }
-      #bg-canvas { display: none; }
+      #bg-canvas, .pdf-btn { display: none; }
       .r-header { padding: 1.1rem 1.5rem; }
       .r-header-inner { gap: 1.2rem; }
       .r-photo { width: 70px; height: 70px; }
@@ -799,6 +828,12 @@
 
 </div>
 
+<a class="pdf-btn" href="Rezwan-Tarin-Resume.pdf" download="Rezwan-Tarin-Resume.pdf">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+  </svg>
+  Download PDF
+</a>
 <canvas id="bg-canvas"></canvas>
 <script>
 (function () {
